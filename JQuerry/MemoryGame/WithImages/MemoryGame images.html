@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pb3</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style>
+
+		button{
+			border-radius: 6px;
+			background: grey;
+			position: absolute;
+			left:50%;
+			top:50%;
+			width: 100px;
+			height: 100px;
+			font-size: 20px;
+			border: 2px solid black;
+			box-shadow: 5px 5px 10px 5px;
+		}
+		tr{
+			
+			height: auto;
+			width: auto;
+			
+		}
+		.notGuessed{
+			
+			width: 150px;
+			height: 150px;
+			
+			border:1px solid black;
+			background-color:grey;
+		}
+		.guessed{
+			
+			width: 150px;
+			height: 150px;
+			
+			border:1px solid green;
+		}
+		img{
+			height: 150px;
+			width: 150px;
+			opacity: 1;
+		}
+	</style>
+	<script>
+//used for shuffle my array
+
+//variabila in care tin minte ce s-a afisat prima data
+var previousValue = 0;
+//variabila in care tin minte cate carduri sunt intoarse acum (ca sa pot intoarce maxim 2)
+var activeNow = 0;
+
+
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
+function onShow(item){
+	activeNow++;
+	if(activeNow == 1)
+		previousValue = item;
+}
+function onHide(){
+	if(activeNow == 2)
+		activeNow--;
+	if(activeNow == 1)
+		activeNow=0;
+	previousValue = 0;
+}
+		$(document).ready(function(){
+			$("#start").click(function(){
+				var rows = 4;//no rows
+				var cols = 4;//no columns
+				var array =[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];//numbers which i extract after a shuffle and set them as text for td
+				shuffle(array);
+
+
+				for(var i = 0; i < rows; i++)
+				{
+					var tr = $("<tr></tr>");
+
+					$("#tabel").append(tr);
+					for(var j = 0; j < cols; j++)
+					{						
+						var img = $("<img></img>").attr("src",array.pop()+".jpg").hide();
+						var td = $("<td></td>").append(img).addClass("notGuessed");
+						//in fiecare td adaug un div in care tin textul si caruia sa ii dau hide sau show
+						tr.append(td);
+					}
+				}
+				$(this).hide();
+			});
+
+			$("table").on("click",".notGuessed",function(){
+				//nu am nici un card, ma intereseaza sa intorc unul si sa ii tin minte valoarea
+				if(activeNow == 0){
+					$(this).children().show(500,onShow($(this)));
+					$(this).children().hide(2500,onHide);
+					console.log("Primul card intors: active --" + activeNow + "previousValue " + $(previousValue).children().html() )
+				}
+				else if(activeNow == 1){
+					$(this).children().show(500,onShow($(this)));
+					console.log("al doilea card intors -- ")
+					if($(this).children().attr("src") == $(previousValue).children().attr("src") && $(this) != $(previousValue))
+					{
+						console.log("Cardurile au aceasi valoare -- tre sa ramana intoarse")
+						
+						$(previousValue).children().stop();
+						$(previousValue).children().show(0);
+						$(previousValue).addClass("guessed").removeClass("notGuessed");
+						$(this).addClass("guessed").removeClass("notGuessed");
+						activeNow = 0;
+						previousValue = 0;
+					}
+					else{
+						console.log("Cardurile au valori diferite, tre sa se intoarca inapoi")
+						$(this).children().hide(2000,onHide);	
+					}
+				}
+				
+				
+			});
+		});
+	</script>
+</head>
+<body>
+
+<button id="start">START</button>
+
+<table id="tabel"></table>
+
+</body>
+</html>

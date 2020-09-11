@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pb4</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+	td{
+		padding: 10px;
+		font-size: 20px;
+		text-align: center;
+		border-bottom: 1px solid grey;
+	}
+	th{
+		background-color: grey;
+		padding: 10px;
+		border-radius: 5px;
+		border-right: 1px solid grey;
+		font-size: 22px;
+		font-weight: bold;
+		text-shadow: 4px 4px 6px black;
+	}
+</style>
+<script>
+
+function print(){
+	var value = "";
+	for(var i = 1; i < $("table").find('tr').length; i++)
+		{
+			var tr = $("table").find('tr');
+			var tds = $(tr[i]).find('td');
+			for(var j = 0; j < tds.length;j++)
+				{
+					value += $(tds[j]).html();
+					value += " ";
+				}
+			value += '\n';
+			
+		}
+		console.log(value);
+}
+function sort(index){
+		//Il folosesc ca sa verific daca trebuie sa fac sortare crescatoare sau descrescatoare
+		var modifyDone = false;
+		//crescator
+		for(var i = 1; i < $("table").find('tr').length - 1; i++)
+		{
+
+			for(var j = i + 1; j < $("table").find('tr').length; j++)
+				{
+					print();
+					var tr = $("table").find('tr');
+					var tdI = $(tr[i]).find('td');
+					var tdJ = $(tr[j]).find('td');
+
+					var value1 = $(tdI[index]).html();
+					var value2 = $(tdJ[index]).html();
+					console.log("Pentru i = " + i + " si j =  " + j + " compaar valorile " + value1 + " si " + value2);
+					if(isNaN(value1) && isNaN(value2)){
+						if(value1 > value2)
+							{	
+								$(tr[i]).before($(tr[j]));
+								console.log("Am schimbat randul lui " + value1 + " cu randul lui " + value2); 
+								modifyDone = true;
+							}
+					}
+					else{
+						if(parseInt(value1) > parseInt(value2))
+							{	
+								$(tr[i]).before($(tr[j]));
+								console.log("Am schimbat randul lui " + value1 + " cu randul lui " + value2); 
+								modifyDone = true;
+							}
+					}
+				}
+		}
+
+		if(modifyDone == false){
+			for(var i = 1; i < $("table").find('tr').length - 1; i++)
+		{
+
+			for(var j = i + 1; j < $("table").find('tr').length; j++)
+				{
+					print();
+					var tr = $("table").find('tr');
+					var tdI = $(tr[i]).find('td');
+					var tdJ = $(tr[j]).find('td');
+
+					var value1 = $(tdI[index]).html();
+					var value2 = $(tdJ[index]).html();
+					console.log("Pentru i = " + i + " si j =  " + j + " compaar valorile " + value1 + " si " + value2);
+					if(isNaN(value1) && isNaN(value2)){
+						if(value1 < value2)
+							{	
+								$(tr[i]).before($(tr[j]));
+								console.log("Am schimbat randul lui " + value1 + " cu randul lui " + value2); 
+								modifyDone = true;
+							}
+					}
+					else{
+						if(parseInt(value1) < parseInt(value2))
+							{	
+								$(tr[i]).before($(tr[j]));
+								console.log("Am schimbat randul lui " + value1 + " cu randul lui " + value2); 
+								modifyDone = true;
+							}
+					}
+				}
+		}
+
+		}
+		
+	
+}
+	$(document).ready(function(){
+		$("table").on("click","th",function(){
+			//ii dau ca parametru functiei sort index-ul th-ului apasat(ca sa stiu coloana ce tre' sortata)
+			sort($("th").index($(this)));
+
+		});
+	});
+</script>
+</head>
+<body>
+
+<table>
+
+<tr>
+	<th>Fructe</th>
+	<th>Cantitate</th>
+	<th>Pret</th>
+</tr>
+
+<tr>
+	<td>Banane</td>
+	<td>7</td>
+	<td>25</td>
+</tr>
+
+
+<tr>
+	<td>Portocale</td>
+	<td>4</td>
+	<td>22</td>
+</tr>
+
+<tr>
+	<td>Kiwi</td>
+	<td>3</td>
+	<td>18</td>
+</tr>
+
+
+<tr>
+	<td>Capsuni</td>
+	<td>10</td>
+	<td>33</td>
+</tr>
+</table>
+
+</body>
+</html>

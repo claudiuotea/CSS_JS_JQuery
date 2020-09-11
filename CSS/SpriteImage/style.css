@@ -1,0 +1,152 @@
+/* width, height ( cat folosesti )
+	background: url(nume) left 0px top 0px;
+*/
+#FB{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 0;
+}
+#Dots{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 -84px;
+
+}
+#Circle{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 -168px;
+}
+#Google{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 -252px;	
+}
+#Linked{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 -336px;
+}
+
+#Pinterest{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 -420px;
+
+}
+
+#Wifi{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 -504px;
+}
+
+#Skype{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 -588px;
+
+}
+#Twitter{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 -672px;
+
+}
+#Vimeo{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 -756px;
+
+}
+#Youtube{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 0 -840px;
+
+}
+
+
+
+#navlist{
+	position: relative;
+}
+
+#navlist li{
+	margin:0;
+	padding: 0;
+	list-style: none;
+}
+
+#navlist li, #navlist a{
+	display: block;
+	height: 84px;
+	width: 84px;
+}
+
+
+/*HOVER PART*/
+#FB a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px 0;
+}
+#Dots a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px -84px;
+
+}
+#Circle a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px -168px;
+}
+#Google a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px -252px;	
+}
+#Linked a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px -336px;
+}
+
+#Pinterest a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px -420px;
+
+}
+
+#Wifi a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px -504px;
+}
+
+#Skype a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px -588px;
+
+}
+#Twitter a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px -672px;
+
+}
+#Vimeo a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px -756px;
+
+}
+#Youtube a:hover{
+	width: 84px;
+	height: 84px;
+	background: url('css-pr4.png') 84px -840px;
+
+}

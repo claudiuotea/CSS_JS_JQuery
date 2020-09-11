@@ -1,0 +1,1 @@
+Sort the table based on the header cell you press on [ascending/descending]

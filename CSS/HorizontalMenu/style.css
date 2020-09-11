@@ -1,0 +1,58 @@
+/*Folosire HTML Layout (header, footer, ...) Width-ul sa fie 100% - adica sa mearga dintr-o parte a paginii in cealalta 
+(latime pe toata pagina) Varianta orizontala cu borduri+ varianta verticala cu borduri 
+La varianta verticala – width-ul sa fie impartit (gen 30% prima parte si 70% parte 2)*/
+
+body{
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+}
+.header{
+	background-color: #00554D;
+	text-align: center;
+	color: grey;
+	padding: 20px;
+	margin:0;
+	height: 10%;
+	max-width: 100vw;
+}
+
+.menu{
+	background-color: #01877A; 
+	overflow: hidden; /* Pentru ca acopera link-urile .....*/
+	height: 5%;
+	max-width: 100vw;
+}
+
+.menu a{
+	float:left;
+	display: block;
+	color:white;
+	text-align: center;
+	text-decoration: none;
+	padding: 14px 16px;
+	border-right:2px dashed #FFFFFF;
+
+}
+
+.menu a:hover{
+	background-color: #00AB9A;
+	color: white;
+	border:2px dashed #FFFFFF;	
+}
+
+.mainView{
+	background-color: #BEFFF9;
+	padding: 10px; /* DE CE DACA SCOT PADDING DE AICI LASA O DUNGA ALBA???? */
+	height: 65%;
+	color: grey;
+	max-width: 100vw;
+}
+
+.footer{
+	background-color:#3C4545;
+	height: 11%;
+	color:grey;
+	padding: 10px;
+	max-width: 100vw;
+}

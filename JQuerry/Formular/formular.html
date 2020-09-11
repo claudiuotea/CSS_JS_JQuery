@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Problema2</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("button").click(function(){
+				var errors = "";
+				//pentru field-ul de nume
+				var nume = $("#numeInput").val();
+				var noDigits = true;
+				for(var i = 0; i < nume.length; i++)
+					if(nume[i] >= "0" && nume[i] <= "9")
+						noDigits = false;
+				if(noDigits == false || nume == "")
+					{
+						$("#numeInput").css({"border":"1px solid red"});
+						errors += "Campul de nume completat incorect!\n";
+					}
+				else $("#numeInput").css({"border":"1px solid grey"});
+
+				//pentru field-ul cu data nasterii
+				var data = $("#dataNastere").val();
+				if(data == "")
+					 {
+					 	$("#dataNastere").css({"border":"1px solid red"});
+						errors += "Campul cu data nasterii trebuie completat!\n";
+					}
+				else{
+					var today = new Date();
+	
+					var year = today.getFullYear();
+					var month = today.getMonth() + 1;
+					var day = today.getDate();
+
+					var dataComponents = data.split("-");
+
+					if(dataComponents[0] > year )
+						{
+							
+							errors += "Nu puteti introduce o data a nasterii mai mare decat ziua curenta.\n";
+							$("#dataNastere").css({"border":"1px solid red"});
+						}else if(dataComponents[0] == year && dataComponents[1] > month)
+						{
+							
+							errors += "Nu puteti introduce o data a nasterii mai mare decat ziua curenta.\n";
+							$("#dataNastere").css({"border":"1px solid red"});
+						}
+						else if(dataComponents[0] == year && dataComponents[1] == month && dataComponents[2] > day)
+						{
+							
+							errors += "Nu puteti introduce o data a nasterii mai mare decat ziua curenta.\n";
+							$("#dataNastere").css({"border":"1px solid red"});
+						} 
+					else $("#dataNastere").css({"border":"1px solid grey"});
+				}
+
+				//Pentru field-ul cu varsta
+				var age = $("#varsta").val();
+				if(age == "")
+					{
+						errors += "Campul cu varsta trebuie completat. \n";
+						$("#varsta").css({"border":"1px solid red"});
+					}
+				else{
+					var dataComponents = data.split("-");
+					var today = new Date();
+
+					var currentYear = today.getFullYear();
+
+					//var validationMessage = $("#varsta").attr("validationMessage");
+					if(parseInt(age) != parseInt(currentYear) - parseInt(dataComponents[0]))
+					{
+						errors += "Va rugam introduceti varsta reala!\n";
+						$("#varsta").css({"border":"1px solid red"});
+					}
+					//else if(validationMessage != ""){
+					//	errors += "Va rugam completati varsta cu un numar!\n";
+					//	$("#varsta").css({"border":"1px solid red"});	
+					//}
+					else $("#varsta").css({"border":"1px solid grey"});
+				}
+				//Pentru field-ul cu email
+				var mail = $("#email").val();
+				if(mail == "")
+				{
+					errors += "Campul cu email trebuie completat!\n";
+					$("#email").css({"border":"1px solid red"});
+				}
+				else{
+					 
+					var before = 0;
+					var after = 0;
+					var aroundPresent = false;
+					var correct = true;
+					var dotPresent = false;
+					var afterDot = false;
+					for(var i = 0; i < mail.length;i++){
+						if(mail[i] != "@" && dotPresent && aroundPresent)
+							afterDot = true;
+						if(aroundPresent == false && mail[i] != "@")
+							before++;
+						else if(aroundPresent == true  && mail[i] != "@")
+							after++;
+						if(mail[i] == "@" && aroundPresent == false)
+							aroundPresent = true;
+						else if(mail[i] == "@" && aroundPresent == true)
+							correct = false;
+						if(mail[i] == "." && aroundPresent == true)
+							dotPresent = true;
+						
+					}
+					if(afterDot == true && correct == true && before > 0 && after > 0 && aroundPresent == true && dotPresent == true)
+						$("#email").css({"border":"1px solid grey"});
+					else
+						{
+							errors += "Introduceti un email valid.\n";
+							$("#email").css({"border":"1px solid red"});
+						} 
+				}
+				if(errors.length > 0)
+					alert(errors);
+			});
+		});
+	</script>
+</head>
+<body>
+
+<script src="pb2.js"></script>
+
+<div style="height: auto; width: auto; border:2px solid grey;display: inline-block; margin: 5px;padding: 10px;">
+<label >Nume</label><br>
+<input type="text" name="nume" id="numeInput"><br>
+<label >Data nasterii</label><br>
+<input type="date" name="dataNastere" id="dataNastere" min="1920-01-01"><br>
+<label >Varsta</label><br>
+<input type="number" name="varsta" id="varsta"><br>
+<label >Email</label><br>
+<input type="email" name="email" id="email"><br><br>
+<button>Trimite</button>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pb4</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+
+	.firstC{
+		font-size: 24px;
+		font-weight: bold;
+		text-align: center;
+	}
+	td{
+		padding: 10px;
+		font-size: 20px;
+		text-align: center;
+		border-right: 1px solid grey;
+		border-top:1px solid grey;
+		border-radius:4px;
+	}
+</style>
+<script>
+function sort(tr){
+	//Il folosesc ca sa verific daca trebuie sa fac sortare crescatoare sau descrescatoare
+	var modifyDone = false;
+
+	//sortare descrescatoare
+	for(var i = 1; i < $(tr).find('td').length - 1; i++)
+		for(var j = i + 1; j < $(tr).find('td').length; j++)
+			{
+
+				var tds = $(tr).find('td');
+				var value1 =$(tds[i]).html();
+				var value2 =$(tds[j]).html();
+				if(!(isNaN(value1) && isNaN(value2)))
+					{
+						value1 = parseInt(value1);
+						value2 = parseInt(value2);
+					}
+				if(value1 < value2)
+				{
+					//$(tds[i]).before($(tds[j]));
+					var trs = $("table").find('tr');
+					for(var x = 0; x < trs.length; x++)
+					{
+						var tdList = $(trs[x]).find('td');
+						$(tdList[i]).before($(tdList[j]));
+					}
+					modifyDone = true;
+				}
+			}
+	if(modifyDone == false){
+	//sortare crescatoare
+	for(var i = 1; i < $(tr).find('td').length - 1; i++)
+		for(var j = i + 1; j < $(tr).find('td').length; j++)
+			{
+
+				var tds = $(tr).find('td');
+				var value1 =$(tds[i]).html();
+				var value2 =$(tds[j]).html();
+				if(!(isNaN(value1) && isNaN(value2)))
+					{
+						value1 = parseInt(value1);
+						value2 = parseInt(value2);
+					}
+				if(value1 > value2)
+				{
+					//$(tds[i]).before($(tds[j]));
+					var trs = $("table").find('tr');
+					for(var x = 0; x < trs.length; x++)
+					{
+						var tdList = $(trs[x]).find('td');
+						$(tdList[i]).before($(tdList[j]));
+					}
+					modifyDone = true;
+				}
+			}
+
+	}
+}
+	$(document).ready(function(){
+		$("table").on("click",".firstC",function(){
+			sort($(this).parent());
+		});
+	});
+</script>
+</head>
+<body>
+
+<table>
+
+<tr>
+	<td class="firstC">Fructe</td>
+	<td>Mere</td>
+	<td>Pere</td>
+	<td>Banane</td>
+</tr>
+
+
+<tr>
+	<td class="firstC">Cantitate</td>
+	<td>4</td>
+	<td>7</td>
+	<td>2</td>
+</tr>
+
+
+<tr>
+	<td class="firstC">Pret</td>
+	<td>16</td>
+	<td>11</td>
+	<td>14</td>
+</tr>
+
+</table>
+
+</body>
+</html>
